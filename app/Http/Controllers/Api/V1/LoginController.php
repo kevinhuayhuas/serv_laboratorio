@@ -22,7 +22,11 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'Credenciales no válidas'], 401);
+        }
+
+        if (!$user->estado) {
+            return response()->json(['message' => 'Usuario Desactivado'], 401);
         }
 
         $token = $user->createToken('api-token')->plainTextToken;
@@ -34,6 +38,6 @@ class LoginController extends Controller
     {
         Auth::user()->tokens()->delete();
 
-        return response()->json(['message' => 'Logged out successfully'], 200);
+        return response()->json(['message' => 'Cerró sesión exitosamente'], 200);
     }
 }

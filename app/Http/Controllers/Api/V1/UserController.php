@@ -31,6 +31,7 @@ class UserController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => bcrypt($validatedData['password']),
+                'estado' => true,
             ]);
 
             return response()->json($user, Response::HTTP_CREATED);
