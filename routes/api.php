@@ -12,6 +12,3 @@ Route::post('v1/logout', [LoginController::class, 'logout'])->middleware('auth:s
 Route::apiResource('v1/user', UserController::class)
     ->only(['index','show','destroy','update','store']);
     /*->middleware('auth:sanctum');*/
-
-
-

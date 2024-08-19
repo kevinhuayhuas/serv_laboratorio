@@ -31,7 +31,13 @@ class LoginController extends Controller
 
         $token = $user->createToken('api-token')->plainTextToken;
 
-        return response()->json(['token' => $token], 200);
+        //return response()->json(['token' => $token], 200);
+        return response()->json([
+            'token' => $token,
+            'token_type' => 'Bearer',
+            'user' => $user,
+            'roles' => $user->roles, // Asegúrate de que 'roles' está definido en el modelo User
+        ]);
     }
 
     public function logout(Request $request)
