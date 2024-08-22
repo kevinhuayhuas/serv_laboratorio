@@ -15,7 +15,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+       // $users = User::all();
+        $users = User::with('roles')->get();
         return response()->json($users, Response::HTTP_OK);
     }
 
@@ -25,6 +26,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            //'rol' => 'required|integer|exists:roles,id'
         ]);
 
         if ($validator->fails()) {
@@ -51,8 +53,12 @@ class UserController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
-                'estado' => true,
+                'estado' => true
             ]);
+
+            $role = $request->input('rol');
+            $user->assignRole($role);
+
             return response()->json(['message' => "Se registro con exito",'data'=>$user,'status' => true],Response::HTTP_CREATED);
         } catch (QueryException $exception) {
             return response()->json([
@@ -71,7 +77,8 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::find($id);
+        //$user = User::find($id);
+        $user = User::with('roles')->find($id);
 
         if (is_null($user)) {
             return response()->json(['message' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);

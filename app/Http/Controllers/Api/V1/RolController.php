@@ -12,7 +12,7 @@ class RolController extends Controller
     public function index()
     {
         try{
-            $roles = DB::select('select * from roles');
+            $roles = Role::all();
             return response()->json($roles);
         }catch (\Exception $e){
             return response()->json(['message' => $e->getMessage(),'status' => false]);
