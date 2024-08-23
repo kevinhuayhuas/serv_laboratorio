@@ -98,7 +98,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'sometimes|required|string|min:8',
+            'password' => 'sometimes|required|string|min:8'
         ]);
 
         $user->update([
@@ -106,6 +106,9 @@ class UserController extends Controller
             'email' => $validatedData['email'] ?? $user->email,
             'password' => isset($validatedData['password']) ? bcrypt($validatedData['password']) : $user->password,
         ]);
+
+        $user->syncRoles([$request['rol']]); // Quitar los roles actuales y asignar el nuevo
+
         return response()->json(['message' => "Se actualizo con exito",'data'=>$user,'status' => true],Response::HTTP_OK);
     }
 
