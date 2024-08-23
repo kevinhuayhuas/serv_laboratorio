@@ -53,7 +53,7 @@ class UserController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
-                'estado' => true
+                'status' => true
             ]);
 
             $role = $request->input('rol');
@@ -64,13 +64,13 @@ class UserController extends Controller
             return response()->json([
                 'error' => 'Error de la base de datos',
                 'message' => $exception->getMessage(),
-                'estado' => false,
+                'status' => false,
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $exception) {
             return response()->json([
                 'error' => 'Error del Servidor',
                 'message' => $exception->getMessage(),
-                'estado' => false,
+                'status' => false,
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
