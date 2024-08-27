@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Via;
+use App\Models\Personal;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
-class ViaController extends Controller
+class PersonalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ViaController extends Controller
     public function index()
     {
         try {
-            $data = Via::all();
+            $data = Personal::all();
             return response()->json($data);
         }catch (\Exception $exception) {
             return response()->json([
@@ -33,7 +33,8 @@ class ViaController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'descripcion' => 'required|string',
+            'id_personal_serv' => 'required|integer',
+            'dni' => 'required|string|max:10',
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -44,8 +45,17 @@ class ViaController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $data = Via::create([
-                'descripcion' => $request->input('descripcion'),
+            $existing = Personal::where('dni', $request->input('dni'))->first();
+            if ($existing) {
+                return response()->json([
+                    'message' => "Ya existe este registro",
+                    'status' => false,
+                ], Response::HTTP_CONFLICT); // Código 409: Conflicto
+            }
+
+            $data = Personal::create([
+                'id_personal_serv' => $request->input('id_personal_serv'),
+                'dni' => $request->input('dni'),
             ]);
             return response()->json(['message' => "Se registro con exito",'data'=>$data,'status' => true],Response::HTTP_CREATED);
         }catch (\Exception $exception) {
@@ -60,10 +70,11 @@ class ViaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show($id)
     {
         try {
-            $data = Via::find($id);
+            $data = Personal::find($id);
+
             if (is_null($data)) {
                 return response()->json(['message' => 'Registro no encontrado'], Response::HTTP_NOT_FOUND);
             }
@@ -80,34 +91,36 @@ class ViaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
         try {
-            $data = Via::find($id);
+            $data = Personal::find($id);
 
             if (is_null($data)) {
                 return response()->json(['message' => 'Registro no encontrado'], Response::HTTP_NOT_FOUND);
             }
 
             $validatedData = $request->validate([
-                'descripcion' => 'required|string',
+                'id_personal_serv' => 'required|integer',
+                'dni' => 'required|string|max:10',
             ]);
 
             // Verificar si otro registro tiene la misma descripción (excepto el actual)
-            $existing = Via::where('descripcion', $validatedData['descripcion'])
+            $existing= Personal::where('dni', $validatedData['dni'])
                 ->where('id', '!=', $id) // Excluir el registro actual
                 ->first();
 
             if ($existing) {
                 return response()->json([
-                    'message' => 'Ya existe otro registro con la misma descripción',
+                    'message' => 'Ya existe otro registro con el mismo nombre',
                     'status' => false,
                 ], Response::HTTP_CONFLICT); // Código 409: Conflicto
             }
 
             // Actualizar el registro
             $data->update([
-                'descripcion' => $request->input('descripcion'),
+                'id_personal_serv' => $request->input('id_personal_serv'),
+                'dni' => $request->input('dni'),
             ]);
 
             return response()->json([
@@ -128,10 +141,10 @@ class ViaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy( $id)
     {
         try{
-            $data = Via::find($id);
+            $data = Personal::find($id);
             if (is_null($data)) {
                 return response()->json(['message' => 'Registro no encontrado','status' => false], Response::HTTP_NOT_FOUND);
             }

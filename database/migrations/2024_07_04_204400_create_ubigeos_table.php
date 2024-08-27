@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('ubigeos', function (Blueprint $table) {
             $table->increments("id");
-            $table->integer("ubigeo_reniec");
-            $table->integer("ubigeo_inei");
-            $table->integer("departamento_inei");
+            $table->string("ubigeo_reniec");
+            $table->string("ubigeo_inei");
+            $table->string("departamento_inei");
             $table->string("departamento");
             $table->string("provincia_inei");
-            $table->integer("provincia");
+            $table->string("provincia");
             $table->string("distrito");
             $table->string("region");
             $table->string("macroregion_inei");

@@ -9,4 +9,5 @@ class Poblacion extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
 }
