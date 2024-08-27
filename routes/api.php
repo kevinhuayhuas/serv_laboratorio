@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\V1\TipoDocIdentidadController;
 use App\Http\Controllers\Api\V1\ParentescoController;
 use App\Http\Controllers\Api\V1\ViaController;
 use App\Http\Controllers\Api\V1\PacienteController;
+use App\Http\Controllers\Api\V1\GrupoController;
 
 Route::post('v1/login', [loginController::class, 'login']);
 Route::post('v1/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
@@ -30,7 +31,6 @@ Route::post('v1/logout', [LoginController::class, 'logout'])->middleware('auth:s
 Route::apiResource('v1/user', UserController::class)
     ->only(['index','show','destroy','update','store']);
     /*->middleware('auth:sanctum');*/
-
 Route::apiResource('v1/rol', RolController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
@@ -88,3 +88,7 @@ Route::apiResource('v1/parentesco', ParentescoController::class)
 Route::apiResource('v1/paciente', PacienteController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
+Route::apiResource('v1/grupo', GrupoController::class)
+    ->only(['index','show','destroy','update','store'])
+    ->middleware('auth:sanctum');
+
