@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('examens', function (Blueprint $table) {
             $table->increments("id");
             $table->string("nombre");
-            $table->string("descripcion");
-            $table->unsignedInteger("tipo_muestra_id");
+            $table->string("descripcion")->nullable();
+            $table->unsignedInteger("tipo_muestra_id")->nullable();
             $table->foreign('tipo_muestra_id')->references('id')->on('tipo_muestras')->onDelete('cascade');
             $table->timestamps();
         });

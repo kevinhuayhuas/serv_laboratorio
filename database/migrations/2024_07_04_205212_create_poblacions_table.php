@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('poblacions', function (Blueprint $table) {
             $table->increments("id");
             $table->string("descripcion");
+            $table->string("abreviatura");
             $table->timestamps();
         });
     }

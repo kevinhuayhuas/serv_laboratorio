@@ -56,7 +56,8 @@ class UserController extends Controller
                 'estado' => true
             ]);
 
-            $role = $request->input('rol');
+            // Asignar rol, por defecto será 'Usuario' si no se proporciona
+            $role = $request->input('rol', 'Usuario');
             $user->assignRole($role);
 
             return response()->json(['message' => "Se registro con exito",'data'=>$user,'status' => true],Response::HTTP_CREATED);
