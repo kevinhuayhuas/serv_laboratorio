@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-use function Laravel\Prompts\table;
 
-class InsertAdminRoleIntoRolesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -103,7 +102,7 @@ class InsertAdminRoleIntoRolesTable extends Migration
             ],
             [
                 'descripcion' => 'HSH QUE ES TS',
-                'abreviatura' => 'La persona ha disuelto su matrimonio a través de un proceso legal',
+                'abreviatura' => 'HTS',
             ],
             [
                 'descripcion' => 'TRANSGENERO QUE ES TS',
@@ -142,131 +141,157 @@ class InsertAdminRoleIntoRolesTable extends Migration
             [
                 'nombre' => 'Secreción Vaginal',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Sedimento Urinario',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Prueba Rápida de HIV',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'RPR',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Prueba Rápida de HBsAg',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Prueba Rápida DUAL VIH/Sífilis',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'GRAM de Secreción Uretral',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Exámen Directo/GRAM de Secreción (Otros)',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Prueba Rápida de Sífilis',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'TPHA',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Cultivo de Secreción Cervical',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Cultivo de Secreción Uretral',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Cultivo de Hisopado Faringeo',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Cultivo de Secreción Anal',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Prueba Rápida de Clamidia',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'ELISA HIV',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Panel Hepatitis B',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Exámen de Heces',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'CARGA VIRAL',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Recuento de CD4',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Testosterona Total',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Herpes II - IgM',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Testosterona Libre',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Progesterona',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Hepatitis C',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
             [
                 'nombre' => 'Prueba Rápida de HCV',
                 'descripcion' => '',
+                'tipo_examen_id'=>null,
                 'tipo_muestra_id'=>null,
             ],
         ]);
@@ -274,12 +299,9 @@ class InsertAdminRoleIntoRolesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        // Optionally, you can remove the inserted role if the migration is rolled back
-        DB::table('roles')->where('name', 'Administrador')->delete();
+        //
     }
-}
+};
