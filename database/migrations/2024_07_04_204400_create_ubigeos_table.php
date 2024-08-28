@@ -13,23 +13,23 @@ return new class extends Migration
     {
         Schema::create('ubigeos', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("ubigeo_reniec");
-            $table->string("ubigeo_inei");
-            $table->string("departamento_inei");
-            $table->string("departamento");
-            $table->string("provincia_inei");
-            $table->string("provincia");
-            $table->string("distrito");
-            $table->string("region");
-            $table->string("macroregion_inei");
-            $table->string("macroregion_minsa");
-            $table->string("iso_3166_2");
-            $table->integer("fips");
-            $table->integer("superficie");
-            $table->integer("altitud");
-            $table->integer("latitud");
-            $table->integer("longitud");
-            $table->string("Frontera");
+            $table->string("ubigeo_reniec")->nullable();
+            $table->string("ubigeo_inei")->nullable();
+            $table->string("departamento_inei")->nullable();
+            $table->string("departamento")->nullable();
+            $table->string("provincia_inei")->nullable();
+            $table->string("provincia")->nullable();
+            $table->string("distrito")->nullable();
+            $table->string("region")->nullable();
+            $table->string("macroregion_inei")->nullable();
+            $table->string("macroregion_minsa")->nullable();
+            $table->string("iso_3166_2")->nullable();
+            $table->string("fips")->nullable();
+            $table->string("superficie")->nullable();
+            $table->string("altitud")->nullable();
+            $table->string("latitud")->nullable();
+            $table->string("longitud")->nullable();
+            $table->string("Frontera")->nullable();
             $table->timestamps();
         });
     }

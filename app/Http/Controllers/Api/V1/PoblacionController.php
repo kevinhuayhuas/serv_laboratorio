@@ -34,6 +34,7 @@ class PoblacionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'descripcion' => 'required|string|max:255',
+            'abreviatura' => 'required|string|max:255'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -54,7 +55,8 @@ class PoblacionController extends Controller
             }
 
             $poblacion = Poblacion::create([
-                'descripcion' => $request->input('descripcion')
+                'descripcion' => $request->input('descripcion'),
+                'abreviatura' => $request->input('abreviatura')
             ]);
             return response()->json(['message' => "Se registro con exito",'data'=>$poblacion,'status' => true],Response::HTTP_CREATED);
         }catch (\Exception $exception) {
@@ -100,7 +102,8 @@ class PoblacionController extends Controller
             }
 
             $validatedData = $request->validate([
-                'descripcion' => 'sometimes|required|string|max:255'
+                'descripcion' => 'sometimes|required|string|max:255',
+                'abreviatura' => 'sometimes|required|string|max:255'
             ]);
 
             // Verificar si otro registro tiene la misma descripción (excepto el actual)
@@ -118,6 +121,7 @@ class PoblacionController extends Controller
             // Actualizar el registro
             $poblacion->update([
                 'descripcion' => $validatedData['descripcion'] ?? $poblacion->descripcion,
+                'abreviatura' => $validatedData['abreviatura'] ?? $poblacion->abreviatura,
             ]);
 
             return response()->json([

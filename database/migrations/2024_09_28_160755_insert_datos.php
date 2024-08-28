@@ -295,8 +295,388 @@ return new class extends Migration
                 'tipo_muestra_id'=>null,
             ],
         ]);
+        DB::table('tipo_muestras')->insert([
+            [
+               'descripcion' => 'Sangre'
+            ],
+            [
+                'descripcion' => 'Eces'
+            ],
+            [
+                'descripcion' => 'Orina'
+            ],
+            [
+                'descripcion' => 'Tejido'
+            ],
+            [
+                'descripcion' => 'Líquido cefalorraquídeo (LCR)'
+            ],
+            [
+                'descripcion' => 'ADN y ARN'
+            ],
+            [
+                'descripcion' => 'Saliva'
+            ],
+            [
+                'descripcion' => 'Células'
+            ],
+            [
+                'descripcion' => 'Líquido sinovial'
+            ],
+        ]);
+        DB::table('tipo_examens')->insert([
+            [
+                'descripcion'=>'INMUNOLOGIA'
+            ],
+            [
+                'descripcion'=>'HEMATOLOGIA'
+            ],
+            [
+                'descripcion'=>'BIOQUIMICA'
+            ],
+            [
+                'descripcion'=>'MICROBIOLOGIA'
+            ]
+        ]);
+        DB::table('resultados')->insert([
+            [
+                'nombre'=>'NEGATIVO',
+                'descripcion'=>'NEGATIVO'
+            ],
+            [
+                'nombre'=>'POSITIVO',
+                'descripcion'=>'POSITIVO'
+            ],
+            [
+                'nombre'=>'REACTIVO',
+                'descripcion'=>'REACTIVO'
+            ],
+            [
+                'nombre'=>'NO REACTIVO',
+                'descripcion'=>'NO REACTIVO'
+            ],
+            [
+                'nombre'=>'CONSERVADA',
+                'descripcion'=>'CONSERVADA'
+            ],
+            [
+                'nombre'=>'DISMINUIDA',
+                'descripcion'=>'DISMINUIDA'
+            ],
+            [
+                'nombre'=>'AUSENTE',
+                'descripcion'=>'AUSENTE'
+            ],
+            [
+                'nombre'=>'MARRON',
+                'descripcion'=>'MARRON'
+            ],
+            [
+                'nombre'=>'MARRON CLARO',
+                'descripcion'=>'MARRON CLARO'
+            ],
+            [
+                'nombre'=>'MARRON OSCURO',
+                'descripcion'=>'MARRON OSCURO'
+            ],
+            [
+                'nombre'=>'PARDO',
+                'descripcion'=>'PARDO'
+            ],
+            [
+                'nombre'=>'PARDO CLARO',
+                'descripcion'=>'PARDO CLARO'
+            ],
+            [
+                'nombre'=>'PARDO OSCURO',
+                'descripcion'=>'PARDO OSCURO'
+            ],
+            [
+                'nombre'=>'AMARILLO',
+                'descripcion'=>'AMARILLO'
+            ],
+            [
+                'nombre'=>'VERDOSO',
+                'descripcion'=>'VERDOSO'
+            ],
+            [
+                'nombre'=>'NEGRO',
+                'descripcion'=>'NEGRO'
+            ],
+            [
+                'nombre'=>'SANGUINOLENTO',
+                'descripcion'=>'SANGUINOLENTO'
+            ],
+            [
+                'nombre'=>'CREMA',
+                'descripcion'=>'CREMA'
+            ],
+            [
+                'nombre'=>'ROJIZO',
+                'descripcion'=>'ROJIZO'
+            ],
+            [
+                'nombre'=>'PASTOSA',
+                'descripcion'=>'PASTOSA'
+            ],
+            [
+                'nombre'=>'BLANDO',
+                'descripcion'=>'BLANDO'
+            ],
+            [
+                'nombre'=>'SOLIDA',
+                'descripcion'=>'SOLIDA'
+            ],
+            [
+                'nombre'=>'FORMADA',
+                'descripcion'=>'FORMADA'
+            ],
+            [
+                'nombre'=>'LIQUIDA',
+                'descripcion'=>'LIQUIDA'
+            ],
+            [
+                'nombre'=>'SEMILIQUIDA',
+                'descripcion'=>'SEMILIQUIDA'
+            ],
+            [
+                'nombre'=>'POSITIVO 1+',
+                'descripcion'=>'POSITIVO 1+'
+            ],
+            [
+                'nombre'=>'POSITIVO 2+',
+                'descripcion'=>'POSITIVO 2+'
+            ],
+            [
+                'nombre'=>'POSITIVO 3+',
+                'descripcion'=>'POSITIVO 3+'
+            ],
+            [
+                'nombre'=>'AUSENTE',
+                'descripcion'=>'AUSENTE'
+            ],
+            [
+                'nombre'=>'0 - 5',
+                'descripcion'=>'0 - 5'
+            ],
+            [
+                'nombre'=>'5 - 10',
+                'descripcion'=>'5 - 10'
+            ],
+            [
+                'nombre'=>'10 - 15',
+                'descripcion'=>'10 - 15'
+            ],
+            [
+                'nombre'=>'15 - 20',
+                'descripcion'=>'15 - 20'
+            ],
+            [
+                'nombre'=>'20 -30',
+                'descripcion'=>'20 -30'
+            ],
+            [
+                'nombre'=>'30 - 40',
+                'descripcion'=>'30 - 40'
+            ],
+            [
+                'nombre'=>'40 - 50',
+                'descripcion'=>'40 - 50'
+            ],
+            [
+                'nombre'=>'50 - 60',
+                'descripcion'=>'50 - 60'
+            ],
+            [
+                'nombre'=>'60 - 70',
+                'descripcion'=>'60 - 70'
+            ],
+            [
+                'nombre'=>'70 - 80',
+                'descripcion'=>'70 - 80'
+            ],
+            [
+                'nombre'=>'80 - 90',
+                'descripcion'=>'80 - 90'
+            ],
+            [
+                'nombre'=>'90 - 100',
+                'descripcion'=>'90 - 100'
+            ],
+            [
+                'nombre'=>'> 100',
+                'descripcion'=>'> 100'
+            ],
+            [
+                'nombre'=>'NO SE OBS. COCCIDIOS',
+                'descripcion'=>'NO SE OBS. COCCIDIOS'
+            ],
+            [
+                'nombre'=>'ISOSPORA BELLI',
+                'descripcion'=>'ISOSPORA BELLI'
+            ],
+            [
+                'nombre'=>'CRYPTOSPORIDIUM PARVUM',
+                'descripcion'=>'CRYPTOSPORIDIUM PARVUM'
+            ],
+            [
+                'nombre'=>'CYCLOSPORA CAYETANENSIS',
+                'descripcion'=>'CYCLOSPORA CAYETANENSIS'
+            ],
+            [
+                'nombre'=>'NO APLICA',
+                'descripcion'=>'NO APLICA'
+            ],
+            [
+                'nombre'=>'1',
+                'descripcion'=>'1'
+            ],
+            [
+                'nombre'=>'2',
+                'descripcion'=>'2'
+            ],
+            [
+                'nombre'=>'4',
+                'descripcion'=>'4'
+            ],
+            [
+                'nombre'=>'8',
+                'descripcion'=>'8'
+            ],
+            [
+                'nombre'=>'16',
+                'descripcion'=>'16'
+            ],
+            [
+                'nombre'=>'32',
+                'descripcion'=>'32'
+            ],
+            [
+                'nombre'=>'64',
+                'descripcion'=>'64'
+            ],
+            [
+                'nombre'=>'128',
+                'descripcion'=>'128'
+            ],
+            [
+                'nombre'=>'256',
+                'descripcion'=>'256'
+            ],
+            [
+                'nombre'=>'512',
+                'descripcion'=>'512'
+            ],
+            [
+                'nombre'=>'1024',
+                'descripcion'=>'1024'
+            ],
+            [
+                'nombre'=>'2048',
+                'descripcion'=>'2048'
+            ],
+            [
+                'nombre'=>'4096',
+                'descripcion'=>'4096'
+            ],
+        ]);
+        DB::table('tipo_examens')->insert([
+            [
+                'descripcion'=>'Padre'
+            ],
+            [
+                'descripcion'=>'Madre'
+            ],
+            [
+                'descripcion'=>'Abuelo'
+            ],
+            [
+                'descripcion'=>'Abuela'
+            ],
+            [
+                'descripcion'=>'Bisabuelo'
+            ],
+            [
+                'descripcion'=>'Bisabuela'
+            ],
+            [
+                'descripcion'=>'Hijo'
+            ],
+            [
+                'descripcion'=>'Hija'
+            ],
+            [
+                'descripcion'=>'Nieto'
+            ],
+            [
+                'descripcion'=>'Nieta'
+            ],
+            [
+                'descripcion'=>'Bisnieto'
+            ],
+            [
+                'descripcion'=>'Bisnieta'
+            ],
+            [
+                'descripcion'=>'Hermano'
+            ],
+            [
+                'descripcion'=>'Hermana'
+            ],
+            [
+                'descripcion'=>'Tío'
+            ],
+            [
+                'descripcion'=>'Tía'
+            ],
+            [
+                'descripcion'=>'Sobrino'
+            ],
+            [
+                'descripcion'=>'Sobrina'
+            ],
+            [
+                'descripcion'=>'Primo'
+            ],
+            [
+                'descripcion'=>'Prima'
+            ],
+            [
+                'descripcion'=>'Suegro'
+            ],
+            [
+                'descripcion'=>'Suegra'
+            ],
+            [
+                'descripcion'=>'Yerno'
+            ],
+            [
+                'descripcion'=>'Nuera'
+            ],
+        ]);
+        DB::table('vias')->insert([
+            ['descripcion' => 'Avenida'],
+            ['descripcion' => 'Calle'],
+            ['descripcion' => 'Jirón'],
+            ['descripcion' => 'Pasaje'],
+            ['descripcion' => 'Carretera'],
+            ['descripcion' => 'Boulevard'],
+            ['descripcion' => 'Autopista'],
+            ['descripcion' => 'Callejón'],
+            ['descripcion' => 'Alameda'],
+            ['descripcion' => 'Camino'],
+            ['descripcion' => 'Vereda'],
+            ['descripcion' => 'Paseo'],
+            ['descripcion' => 'Plaza'],
+            ['descripcion' => 'Ronda'],
+            ['descripcion' => 'Travesía'],
+            ['descripcion' => 'Carretón'],
+            ['descripcion' => 'Circunvalación'],
+            ['descripcion' => 'Peatonal'],
+            ['descripcion' => 'Sendero'],
+            ['descripcion' => 'Ruta']
+        ]);
     }
-
     /**
      * Reverse the migrations.
      */
