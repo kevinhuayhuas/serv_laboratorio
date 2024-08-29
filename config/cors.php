@@ -22,7 +22,8 @@ return [
     //Lista blanca
     'allowed_origins' => [
         'http://localhost:4200', // Permitir sólo este dominio
-        'http:127.0.0.1:4200'
+        'http:127.0.0.1:4200',
+        'http:127.0.0.1:8000'
     ],  // Lista blanca de dominios
 
     'allowed_origins_patterns' => [],

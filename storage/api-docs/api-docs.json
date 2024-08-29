@@ -1,0 +1,148 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api Laboratorio Referencial de la Direccion de Redes Integradas de Salud Lima Norte.",
+        "description": "La API Laboratorio Referencial de la Dirección de Redes Integradas de Salud Lima Norte proporciona una interfaz de programación para acceder y gestionar información relacionada con los exámenes de laboratorio en el sistema de salud. Esta API permite a los desarrolladores interactuar con los datos de los exámenes, incluyendo su obtención, creación, actualización y eliminación.",
+        "contact": {
+            "email": "kevin.huayhuas@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/examen": {
+            "get": {
+                "tags": [
+                    "Exámenes"
+                ],
+                "summary": "Obtener todos los exámenes",
+                "operationId": "dfb64c59f8c9dd9c5bdd5ddb66f5f2a7",
+                "responses": {
+                    "200": {
+                        "description": "Lista de exámenes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "nombre_examen": {
+                                                "type": "string",
+                                                "example": "Examen de sangre"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "Descripción del examen"
+                                            },
+                                            "n1": {
+                                                "type": "string",
+                                                "example": "Valor III-1"
+                                            },
+                                            "n2": {
+                                                "type": "string",
+                                                "example": "Valor II-2"
+                                            },
+                                            "n3": {
+                                                "type": "string",
+                                                "example": "Valor II-1"
+                                            },
+                                            "n4": {
+                                                "type": "string",
+                                                "example": "Valor I-4"
+                                            },
+                                            "n5": {
+                                                "type": "string",
+                                                "example": "Valor I-3"
+                                            },
+                                            "n6": {
+                                                "type": "string",
+                                                "example": "Valor I-2"
+                                            },
+                                            "n7": {
+                                                "type": "string",
+                                                "example": "Valor I-1"
+                                            },
+                                            "tipo_examen_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "tipo_muestra_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "estado": {
+                                                "type": "string",
+                                                "example": "Activo"
+                                            },
+                                            "identificador_texamen": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "nombre_texamen": {
+                                                "type": "string",
+                                                "example": "Tipo de Examen"
+                                            },
+                                            "descripcion_texamen": {
+                                                "type": "string",
+                                                "example": "Descripción del tipo de examen"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error del Servidor"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Detalles del error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Utiliza un token JWT para la autenticación",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Exámenes",
+            "description": "Exámenes"
+        }
+    ]
+}

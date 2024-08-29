@@ -20,7 +20,45 @@ class ExamenController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/v1/examen",
+     *     summary="Obtener todos los exámenes",
+     *     tags={"Exámenes"},
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Lista de exámenes",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="id", type="integer", example=1),
+     *                 @OA\Property(property="nombre_examen", type="string", example="Examen de sangre"),
+     *                 @OA\Property(property="descripcion", type="string", example="Descripción del examen"),
+     *                 @OA\Property(property="n1", type="string", example="Valor III-1"),
+     *                 @OA\Property(property="n2", type="string", example="Valor II-2"),
+     *                 @OA\Property(property="n3", type="string", example="Valor II-1"),
+     *                 @OA\Property(property="n4", type="string", example="Valor I-4"),
+     *                 @OA\Property(property="n5", type="string", example="Valor I-3"),
+     *                 @OA\Property(property="n6", type="string", example="Valor I-2"),
+     *                 @OA\Property(property="n7", type="string", example="Valor I-1"),
+     *                 @OA\Property(property="tipo_examen_id", type="integer", example=1),
+     *                 @OA\Property(property="tipo_muestra_id", type="integer", example=1),
+     *                 @OA\Property(property="estado", type="string", example="Activo"),
+     *                 @OA\Property(property="identificador_texamen", type="integer", example=1),
+     *                 @OA\Property(property="nombre_texamen", type="string", example="Tipo de Examen"),
+     *                 @OA\Property(property="descripcion_texamen", type="string", example="Descripción del tipo de examen")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Error del servidor",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Error del Servidor"),
+     *             @OA\Property(property="message", type="string", example="Detalles del error")
+     *         )
+     *     )
+     * )
      */
     public function index()
     {

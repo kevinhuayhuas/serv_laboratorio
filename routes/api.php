@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\v1\ExamenController;
 use App\Http\Controllers\Api\V1\ResultadoController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Api\V1\UserController;
 use  App\Http\Controllers\Api\V1\RolController;
