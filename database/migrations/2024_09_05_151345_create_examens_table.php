@@ -15,6 +15,13 @@ return new class extends Migration
             $table->increments("id");
             $table->string("nombre");
             $table->string("descripcion")->nullable();
+            $table->boolean("III-1")->nullable();
+            $table->boolean("II-2")->nullable();
+            $table->boolean("II-1")->nullable();
+            $table->boolean("I-4")->nullable();
+            $table->boolean("I-3")->nullable();
+            $table->boolean("I-2")->nullable();
+            $table->boolean("I-1")->nullable();
             $table->unsignedInteger("tipo_examen_id")->nullable();
             $table->foreign('tipo_examen_id')->references('id')->on('tipo_examens')->onDelete('cascade');
             $table->unsignedInteger("tipo_muestra_id")->nullable();
