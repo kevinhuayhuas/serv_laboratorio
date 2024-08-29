@@ -9,4 +9,8 @@ class Examen extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function tipoExamen()
+    {
+        return $this->belongsTo(TipoExamen::class, 'tipo_examen_id');
+    }
 }

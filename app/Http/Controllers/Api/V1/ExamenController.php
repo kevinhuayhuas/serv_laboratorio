@@ -7,16 +7,25 @@ use App\Models\Examen;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Services\Api\V1\ExamenService;
 
 class ExamenController extends Controller
 {
+
+    protected $examenService;
+
+    public function __construct(ExamenService $examenService)
+    {
+        $this->examenService = $examenService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         try {
-            $data = Examen::all();
+            $data = $this->examenService->getExamenes();
             return response()->json($data);
         }catch (\Exception $exception) {
             return response()->json([
