@@ -7,12 +7,19 @@ use App\Models\Ubigeo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Services\Api\V1\UbigeoService;
 
 class UbigeoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    protected $ubigeoService;
+
+    public function __construct(UbigeoService $ubigeoService){
+        $this->ubigeoService = $ubigeoService;
+    }
+
     public function index()
     {
         try {
@@ -27,6 +34,42 @@ class UbigeoController extends Controller
         }
     }
 
+    public function getDepartamentos(){
+        try {
+            $departamentos = $this->ubigeoService->getDepartamentos();
+            return response()->json($departamentos);
+        }catch (\Exception $exception) {
+            return response()->json([
+                'error' => 'Error del Servidor',
+                'message' => $exception->getMessage(),
+                'status' => false,
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    public function getProvincias($departamento){
+        try {
+            $departamentos = $this->ubigeoService->getProvincias($departamento);
+            return response()->json($departamentos);
+        }catch (\Exception $exception) {
+            return response()->json([
+                'error' => 'Error del Servidor',
+                'message' => $exception->getMessage(),
+                'status' => false,
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    public function getDistritos($provincia){
+        try {
+            $departamentos = $this->ubigeoService->getDistritos($provincia);
+            return response()->json($departamentos);
+        }catch (\Exception $exception) {
+            return response()->json([
+                'error' => 'Error del Servidor',
+                'message' => $exception->getMessage(),
+                'status' => false,
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */

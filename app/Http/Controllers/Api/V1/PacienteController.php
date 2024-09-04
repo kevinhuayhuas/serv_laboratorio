@@ -7,6 +7,7 @@ use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
@@ -16,7 +17,7 @@ class PacienteController extends Controller
     public function index()
     {
         try {
-            $data = Paciente::all();
+            $data = DB::select("select * from v_pacientes");
             return response()->json($data);
         }catch (\Exception $exception) {
             return response()->json([
@@ -62,7 +63,7 @@ class PacienteController extends Controller
         }
         try {
             $data = Paciente::create([
-                'tipoDocIndentidad_id' => $request->input('descripcion'),
+                'tipoDocIndentidad_id' => $request->input('tipoDocIndentidad_id'),
                 'num_doc' => $request->input('num_doc'),
                 'nombres' => $request->input('nombres'),
                 'ape_pat' => $request->input('ape_pat'),

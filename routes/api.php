@@ -75,6 +75,14 @@ Route::apiResource('v1/estadocivil', EstadoCivilController::class)
 Route::apiResource('v1/ubigeo', UbigeoController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
+/*---------------------------------------------------------------------------------*/
+Route::get('v1/departamentos', [UbigeoController::class, 'getDepartamentos'])
+    ->middleware('auth:sanctum');
+Route::get('v1/provincias/{departamento}', [UbigeoController::class, 'getProvincias'])
+    ->middleware('auth:sanctum');
+Route::get('v1/distritos/{provincia}', [UbigeoController::class, 'getDistritos'])
+    ->middleware('auth:sanctum');
+/*---------------------------------------------------------------------------------*/
 Route::apiResource('v1/tipodoc', TipoDocIdentidadController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
