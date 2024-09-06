@@ -73,6 +73,18 @@ class ExamenController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function getExtablecimientoPorTipoExamen($tipoexamen){
+            try{
+                $data=$this->examenService->getExamenesPorTipoExamenes($tipoexamen);
+                return response()->json($data);
+            }catch (\Exception $exception) {
+                return response()->json([
+                    'error' => 'Error del Servidor',
+                    'message' => $exception->getMessage(),
+                    'status' => false,
+                ],Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+    }
 
     /**
      * Store a newly created resource in storage.

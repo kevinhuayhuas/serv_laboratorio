@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\V1\ParentescoController;
 use App\Http\Controllers\Api\V1\ViaController;
 use App\Http\Controllers\Api\V1\PacienteController;
 use App\Http\Controllers\Api\V1\GrupoController;
+use App\Http\Controllers\Api\V1\TipoExamenController;
 
 Route::post('v1/login', [loginController::class, 'login']);
 Route::post('v1/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
@@ -40,6 +41,13 @@ Route::apiResource('v1/poblacion', PoblacionController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
 Route::apiResource('v1/examen', ExamenController::class)
+    ->only(['index','show','destroy','update','store'])
+    ->middleware('auth:sanctum');
+/*---------------------------------------------------------------------------------*/
+Route::get('v1/filtroExamen/{tipoexamen}', [ExamenController::class,'getExtablecimientoPorTipoExamen'])
+    ->middleware('auth:sanctum');
+/*---------------------------------------------------------------------------------*/
+Route::apiResource('v1/tipoexamen', TipoExamenController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
 Route::apiResource('v1/resultado', ResultadoController::class)
@@ -95,6 +103,10 @@ Route::apiResource('v1/parentesco', ParentescoController::class)
 Route::apiResource('v1/paciente', PacienteController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');
+/*---------------------------------------------------------------------------------*/
+Route::get('v1/buscar/paciente/{iniciales}/{fecha_nac}', [PacienteController::class, 'buscarPacienteporInicialesFechaNac'])
+    ->middleware('auth:sanctum');
+/*---------------------------------------------------------------------------------*/
 Route::apiResource('v1/grupo', GrupoController::class)
     ->only(['index','show','destroy','update','store'])
     ->middleware('auth:sanctum');

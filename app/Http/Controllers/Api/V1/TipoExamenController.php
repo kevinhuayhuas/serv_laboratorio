@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\TipoExamen;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TipoExamenController extends Controller
 {
@@ -12,7 +14,16 @@ class TipoExamenController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $data= TipoExamen::all();
+            return $data;
+        }catch (\Exception $exception) {
+            return response()->json([
+                'error' => 'Error del Servidor',
+                'message' => $exception->getMessage(),
+                'status' => false,
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

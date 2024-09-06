@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Api\V1\PacienteService;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,13 +12,18 @@ use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
+    protected $pacienteService;
+
+    public function __construct(PacienteService $pacienteService){
+        $this->pacienteService = $pacienteService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         try {
-            $data = DB::select("select * from v_pacientes");
+            $data = $this->pacienteService->getPacientes();
             return response()->json($data);
         }catch (\Exception $exception) {
             return response()->json([
@@ -53,6 +59,7 @@ class PacienteController extends Controller
             'sexo_id' => 'required|integer',
             'estadoCivil_id' => 'required|integer'
         ]);
+
         if ($validator->fails()) {
             $errors = $validator->errors();
             return response()->json([
@@ -61,9 +68,20 @@ class PacienteController extends Controller
                 'status' => false,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
         try {
+            // Generar las iniciales
+            $nombres = $request->input('nombres');
+            $ape_pat = $request->input('ape_pat');
+            $ape_mat = $request->input('ape_mat');
+
+            // Tomar las primeras letras
+            $iniciales = strtoupper(substr($nombres, 0, 1) . substr($ape_pat, 0, 1) . substr($ape_mat, 0, 1));
+
+            // Crear el paciente con las iniciales
             $data = Paciente::create([
                 'tipoDocIndentidad_id' => $request->input('tipoDocIndentidad_id'),
+                'iniciales' => $iniciales,
                 'num_doc' => $request->input('num_doc'),
                 'nombres' => $request->input('nombres'),
                 'ape_pat' => $request->input('ape_pat'),
@@ -82,8 +100,9 @@ class PacienteController extends Controller
                 'sexo_id' => $request->input('sexo_id'),
                 'estadoCivil_id' => $request->input('estadoCivil_id')
             ]);
-            return response()->json(['message' => "Se registro con exito",'data'=>$data,'status' => true],Response::HTTP_CREATED);
-        }catch (\Exception $exception) {
+
+            return response()->json(['message' => "Se registró con éxito", 'data' => $data, 'status' => true], Response::HTTP_CREATED);
+        } catch (\Exception $exception) {
             return response()->json([
                 'error' => 'Error del Servidor',
                 'message' => $exception->getMessage(),
@@ -91,6 +110,7 @@ class PacienteController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -209,4 +229,29 @@ class PacienteController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    /*Adicionales*/
+    public function buscarPacienteporInicialesFechaNac($iniciales, $fecha_nac)
+    {
+        try {
+            $data = $this->pacienteService->getPacientesPorInicialesFecha_Nac($iniciales, $fecha_nac);
+            if ($data->isEmpty()) {
+                return response()->json([
+                    'message' => 'No hay resultados para la búsqueda.',
+                    'status' => false,
+                ], Response::HTTP_NOT_FOUND);
+            }
+            return response()->json([
+                'data' => $data,
+                'status' => true,
+            ], Response::HTTP_OK);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'error' => 'Error del Servidor',
+                'message' => $exception->getMessage(),
+                'status' => false,
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

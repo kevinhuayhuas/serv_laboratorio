@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments("id");
             $table->unsignedInteger("tipoDocIndentidad_id");
             $table->foreign('tipoDocIndentidad_id')->references('id')->on('tipo_doc_identidads')->onDelete('cascade');
+            $table->string("iniciales")->nullable();
             $table->string("num_doc");
             $table->string("nombres");
             $table->string("ape_pat");

@@ -11,4 +11,8 @@ class ExamenService{
         //return Examen::all();
         return DB::table('vista_examenes')->get();
     }
+    public function getExamenesPorTipoExamenes($tipoexamen){
+        $data = Examen::where('tipo_examen_id',$tipoexamen)->get();
+        return  $data;
+    }
 }
